@@ -1,4 +1,3 @@
-import Section from "../Section"
 
 const Description = () =>{
     return(

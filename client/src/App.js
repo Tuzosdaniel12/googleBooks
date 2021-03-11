@@ -1,24 +1,19 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import CenterContainer from "./components/CenterContainer";
 import Header from "./components/Header";
-import Section from "./components/Section";
-import FormControl from "./components/FormControl";
-import MainContainer from "./components/MainContainer";
+import Search from "./pages/Search";
+import Saved from "./pages/Saved";
 
 function App() {
   return (
     <Router>
-      <div className="App">
         <Header/>
-        <Section styling="p-1 m-0">
-
-          <FormControl/>
-
-          <MainContainer/>
-
-        </Section>
-      </div>
+        <Switch>
+            <Route exact strict  path="/" component={Search}/>
+            <Route exact strict  path="/saved" component={Saved}/>
+            <Route exact path="*" component={Search} />
+          </Switch>
       
+    
     </Router>
     
   );
