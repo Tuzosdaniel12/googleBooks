@@ -12,8 +12,6 @@ function App() {
             <Route exact strict  path="/saved" component={Saved}/>
             <Route exact path="*" component={Search} />
           </Switch>
-      
-    
     </Router>
     
   );
