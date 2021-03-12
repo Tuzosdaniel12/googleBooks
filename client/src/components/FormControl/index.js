@@ -1,13 +1,15 @@
 import Column from "../Column"
 import Section from "../Section"
-import React, { useRef, useState } from "react"
+import React, { useRef } from "react"
 import api from "../../utils/Api"
+import { useBookContext } from "../../utils/GlobalContext"
+import { SEARCH } from "../../utils/actions";
 
 const FormControl = () =>{
 
     const bookInput = useRef();
 
-    const [bookList, setBookListState] = useState([]);
+    const [bookList, dispatch] = useBookContext;
 
     const handleSubmit = async (event) =>{
         event.preventDefault();
@@ -26,7 +28,10 @@ const FormControl = () =>{
             }
         
         })
-        setBookListState(filterData)
+        dispatch({
+            type: SEARCH,
+            books: filterData
+        })
         console.log(bookList)
     }
     return(
