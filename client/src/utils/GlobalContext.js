@@ -12,13 +12,13 @@ const reducer = (state, action) => {
   switch (action.type) {
   case SEARCH:
     return {
-     books:[...action]
+     books:[...action.books]
     };
 
   case ADD_BOOK:
     return {
         ...state,
-        savedBooks: action.book
+        savedBooks: action.books
     };
 
 

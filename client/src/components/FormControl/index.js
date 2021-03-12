@@ -1,15 +1,27 @@
 import Column from "../Column"
 import Section from "../Section"
-import React, { useRef } from "react"
+import React, { useRef, useEffect } from "react"
 import api from "../../utils/Api"
 import { useBookContext } from "../../utils/GlobalContext"
 import { SEARCH } from "../../utils/action";
 
 const FormControl = () =>{
+    const [, dispatch] = useBookContext(); 
+
+    useEffect(() => {
+        async function fetchMyAPI() {
+            const { data } = await api.getBooks("Batman")
+            console.log(data)
+            dispatch({
+                type: SEARCH,
+                books: await data.items.map( item => filterData(item))
+            })
+            
+        }
+        fetchMyAPI()
+    }, [])
 
     const bookInput = useRef();
-
-    const [, dispatch] = useBookContext();
 
     const handleSubmit = async (event) =>{
         event.preventDefault();
@@ -18,20 +30,22 @@ const FormControl = () =>{
 
         const { data } = await api.getBooks(userQuery)
         
-        const filterData = data.items.map(item =>{
-            return{
+        
+        dispatch({
+            type: SEARCH,
+            books: await data.items.map( item => filterData(item))
+        })
+    }
+
+    const filterData = (item) =>{
+        return {
                 authors: item.volumeInfo.authors,
                 image: item.volumeInfo.imageLinks.thumbnail,
                 title: item.volumeInfo.title,
                 subtitle: item.volumeInfo.subtitle,
-                description: item.volumeInfo.description
-            }
-        
-        })
-        dispatch({
-            type: SEARCH,
-            books: filterData
-        })
+                description: item.volumeInfo.description,
+                infoLink: item.volumeInfo.infoLink
+            } 
     }
     return(
         <Column>

@@ -1,7 +1,7 @@
-const Figure = () =>{
+const Figure = ({image}) =>{
     return(
-        <figure className="image is-128x128">
-            <img src="https://bulma.io/images/placeholders/256x256.png"/>
+        <figure className="image">
+            <img className="has-ratio" src={image}/>
         </figure>
     )
 }

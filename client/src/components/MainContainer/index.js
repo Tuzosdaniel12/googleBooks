@@ -5,8 +5,8 @@ import Figure from "../Figure"
 import Section from "../Section"
 import TittleButtons from "../TittleButtons"
 
-const MainContainer = ({state: list}) => {
-    
+const MainContainer = ({list, savedOrDelete}) => {
+    console.log(list)
     return (
         <Column>
         {list.map(item=>{
@@ -18,15 +18,15 @@ const MainContainer = ({state: list}) => {
             <div className="column">
                 <Section className="columns is-multiline">
 
-                    <TittleButtons title={item.displaytitle} savedOrDelete={item.display.savedOrDelete} src={item.display.src}/>
+                    <TittleButtons title={item.title} infoLink={item.infoLink} savedOrDelete={savedOrDelete} src={item.image}/>
 
-                    <p className="column is-full pt-0 pb-0">{item.display.description}</p>
-                    <p className="column is-full pt-0">{item.display.author}</p>
+                    <p className="column is-full pt-0 pb-0">{item.subtitle}</p>
+                    <p className="column is-full pt-0">{item.author}</p>
                 </Section>
 
                 <Section styling="ml-1 mr-1 mb-1">
-                    <Figure/>
-                    <Description/>
+                    <Figure image={item.image}/>
+                    <Description description={item.description}/>
                 </Section>    
                 
                 
