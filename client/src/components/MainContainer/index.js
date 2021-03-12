@@ -1,15 +1,15 @@
-import { useBookContext } from "../../utils/GlobalContext"
+
 import Column from "../Column"
 import Description from "../Description"
 import Figure from "../Figure"
 import Section from "../Section"
 import TittleButtons from "../TittleButtons"
 
-const MainContainer = () => {
-    const [state, dispatch] = useBookContext();
+const MainContainer = ({state: list}) => {
+    
     return (
         <Column>
-        {state.map(s=>{
+        {list.map(item=>{
             return <Section styling="section-shadow m-0">
             <Column>
                 <h1 className="bd-notification is-info  is-size-5"></h1>
@@ -18,10 +18,10 @@ const MainContainer = () => {
             <div className="column">
                 <Section className="columns is-multiline">
 
-                    <TittleButtons title={s.displaytitle} savedOrDelete={s.display.savedOrDelete} src={s.display.src}/>
+                    <TittleButtons title={item.displaytitle} savedOrDelete={item.display.savedOrDelete} src={item.display.src}/>
 
-                    <p className="column is-full pt-0 pb-0">{s.display.description}</p>
-                    <p className="column is-full pt-0">{s.display.author}</p>
+                    <p className="column is-full pt-0 pb-0">{item.display.description}</p>
+                    <p className="column is-full pt-0">{item.display.author}</p>
                 </Section>
 
                 <Section styling="ml-1 mr-1 mb-1">

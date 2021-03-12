@@ -3,13 +3,13 @@ import Section from "../Section"
 import React, { useRef } from "react"
 import api from "../../utils/Api"
 import { useBookContext } from "../../utils/GlobalContext"
-import { SEARCH } from "../../utils/actions";
+import { SEARCH } from "../../utils/action";
 
 const FormControl = () =>{
 
     const bookInput = useRef();
 
-    const [bookList, dispatch] = useBookContext;
+    const [, dispatch] = useBookContext();
 
     const handleSubmit = async (event) =>{
         event.preventDefault();
