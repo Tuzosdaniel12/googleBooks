@@ -11,7 +11,7 @@ const FormControl = () =>{
     useEffect(() => {
         async function fetchMyAPI() {
             const { data } = await api.getBooks("Batman")
-            console.log(data)
+
             dispatch({
                 type: SEARCH,
                 books: await data.items.map( item => filterData(item))

@@ -5,7 +5,7 @@ import { useBookContext } from "../../utils/GlobalContext";
 import "./style.sass"
 
 function Search() {
-  const [state, dispatch] = useBookContext();
+  const [state, ] = useBookContext();
   return (
     
     <div className="width-height">

@@ -16,15 +16,16 @@ const reducer = (state, action) => {
     };
 
   case ADD_BOOK:
+ 
     return {
-        ...state,
+        ...state.savedBooks,
         savedBooks: action.books
     };
 
 
   case REMOVE_BOOK:
     return {
-      ...state,
+      ...state.savedBooks,
       savedBooks: state.savedBooks.filter((book) => {
         return book._id !== action._id; 
       })
