@@ -2,17 +2,36 @@ import Column from "../Column"
 import Section from "../Section"
 import React, { useRef } from "react"
 import api from "../../utils/Api"
+import { useBookContext } from "../../utils/GlobalContext"
+import { SEARCH } from "../../utils/actions";
 
 const FormControl = () =>{
 
-    const bookInput = useRef()
+    const bookInput = useRef();
 
-    const handleSubmit = event =>{
+    const [bookList, dispatch] = useBookContext;
+
+    const handleSubmit = async (event) =>{
         event.preventDefault();
 
-        //bookInput.current.value
+        const userQuery = bookInput.current.value
 
-        const { data } = api.getBooks()
+        const { data } = await api.getBooks(userQuery)
+        
+        const filterData = data.items.map(item =>{
+            return{
+                authors: item.volumeInfo.authors,
+                image: item.volumeInfo.imageLinks.thumbnail,
+                title: item.volumeInfo.title,
+                subtitle: item.volumeInfo.subtitle,
+                description: item.volumeInfo.description
+            }
+        
+        })
+        dispatch({
+            type: SEARCH,
+            books: filterData
+        })
     }
     return(
         <Column>
@@ -24,11 +43,11 @@ const FormControl = () =>{
 
                     <form className="field has-addons" onSubmit={handleSubmit}>
                         <p className="control is-expanded">
-                            <input className="input" type="text" placeholder="Search Book" />
+                            <input className="input" type="text" placeholder="Search Book" ref={bookInput}/>
                         </p>
 
                         <p className="control">
-                            <button className="button is-info">
+                            <button className="button is-info" onClick={handleSubmit}>
                                 Search
                             </button>
                         </p>
