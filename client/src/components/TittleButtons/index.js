@@ -3,7 +3,6 @@ import { useBookContext } from "../../utils/GlobalContext";
 import Column from "../Column"
 import { ADD_BOOK, REMOVE_BOOK } from "../../utils/action";
 import Api from "../../utils/Api";
-import { Link } from "react-router-dom";
 
 const TittleButtons = ({title, savedOrDelete, link, _id}) =>{
     const [state, dispatch] = useBookContext();
@@ -18,7 +17,7 @@ const TittleButtons = ({title, savedOrDelete, link, _id}) =>{
 
             const { data } = await Api.saveBook(state.books[dataId])
             
-            
+            window.location.href = "/saved";
 
             return
         }
@@ -37,12 +36,12 @@ const TittleButtons = ({title, savedOrDelete, link, _id}) =>{
 
                 <div>
                     <a className="button is-warning is-small" href={link}>View</a>
-                    <Link to="/saved" className={`button ${savedOrDelete === "Save"?"is-success":"is-danger"} is-small`} 
+                    <button className={`button ${savedOrDelete === "Save"?"is-success":"is-danger"} is-small`} 
                             savedOrDelete={savedOrDelete}    
                             dataId={_id} 
                             onClick={handleOnClick}
 
-                    >{savedOrDelete}</Link>
+                    >{savedOrDelete}</button>
                 </div>
             </div>
         </Column>
