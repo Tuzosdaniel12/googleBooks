@@ -2,6 +2,7 @@
 import { useBookContext } from "../../utils/GlobalContext";
 import Column from "../Column"
 import { ADD_BOOK, REMOVE_BOOK } from "../../utils/action";
+import Api from "../../utils/Api";
 
 const TittleButtons = ({title, savedOrDelete, link, _id}) =>{
     const [state, dispatch] = useBookContext();
@@ -11,12 +12,17 @@ const TittleButtons = ({title, savedOrDelete, link, _id}) =>{
         
         const dataId = event.target.getAttribute("dataId")
         const action = event.target.getAttribute("savedOrDelete")
-        console.log(dataId, state.books[dataId])
+        console.log(dataId);
+        console.log(action);
+        console.log(state.books[dataId]);
         if(action === "Save"){
-                dispatch({
-                type: ADD_BOOK,
-                books: state.books[dataId]
-            })
+
+            const { data } = await Api.saveBook(state.books[dataId])
+            console.log(data)
+            //     dispatch({
+            //     type: ADD_BOOK,
+            //     books: state.books[dataId]
+            // })
 
             return
         }

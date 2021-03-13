@@ -22,7 +22,7 @@ module.exports = {
 
         } catch (error) {
 
-            res.status(422).json(err);
+            res.status(422).json(error);
 
         }
     },
@@ -35,7 +35,7 @@ module.exports = {
 
         }catch(error){
 
-            res.status(422).json(err);
+            res.status(422).json(error);
             
         } 
     }

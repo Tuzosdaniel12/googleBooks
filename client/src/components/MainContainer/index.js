@@ -4,17 +4,16 @@ import Description from "../Description"
 import Figure from "../Figure"
 import Section from "../Section"
 import TittleButtons from "../TittleButtons"
+import CenterContainer from "../CenterContainer"
 
 const MainContainer = ({list, savedOrDelete}) => {
 
     return (
         <Column>
-        {list.map((item, index)=>{
+        {list.length?
+            list.map((item, index)=>{
             return <Section styling="section-shadow m-0" key={index}>
-            {/* <Column>
-                <h1 className="bd-notification is-info  is-size-5"></h1>
-            </Column> */}
-
+            
             <div className="column">
                 <Section className="columns is-multiline">
 
@@ -32,7 +31,9 @@ const MainContainer = ({list, savedOrDelete}) => {
                 
             </div>
         </Section>
-        })}
+        }):
+        <CenterContainer>Search or Save Books</CenterContainer>
+    }
             
         </Column>
     )
