@@ -12,7 +12,7 @@ console.log("here", list)
         {list.map((item, index)=>{
             return <Section styling="section-shadow m-0" key={index}>
             <Column>
-                <h1 className="bd-notification is-info  is-size-5"></h1>
+                <h1 className="bd-notification is-info  is-size-5"/>
             </Column>
 
             <div className="column">
