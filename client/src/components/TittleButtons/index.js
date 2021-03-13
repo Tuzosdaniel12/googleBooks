@@ -3,9 +3,12 @@ import { useBookContext } from "../../utils/GlobalContext";
 import Column from "../Column"
 import { ADD_BOOK, REMOVE_BOOK } from "../../utils/action";
 import Api from "../../utils/Api";
+import { useHistory } from "react-router-dom"
 
 const TittleButtons = ({title, savedOrDelete, link, _id}) =>{
     const [state, dispatch] = useBookContext();
+
+    const history = useHistory()
 
     const handleOnClick = async (event) =>{
         event.preventDefault();
@@ -14,10 +17,10 @@ const TittleButtons = ({title, savedOrDelete, link, _id}) =>{
         const action = event.target.getAttribute("savedOrDelete")
 
         if(action === "Save"){
-
+            
             const { data } = await Api.saveBook(state.books[dataId])
             
-            window.location.href = "/saved";
+            history.push("/saved"); 
 
             return
         }

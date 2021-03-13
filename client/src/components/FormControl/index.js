@@ -10,7 +10,7 @@ const FormControl = () =>{
 
     useEffect(() => {
         async function fetchMyAPI() {
-            const { data } = await api.getBooks("Batman")
+            const { data } = await api.getBooks("Computer")
 
             dispatch({
                 type: SEARCH,
