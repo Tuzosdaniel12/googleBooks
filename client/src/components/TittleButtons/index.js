@@ -3,6 +3,7 @@ import { useBookContext } from "../../utils/GlobalContext";
 import Column from "../Column"
 import { ADD_BOOK, REMOVE_BOOK } from "../../utils/action";
 import Api from "../../utils/Api";
+import { Link } from "react-router-dom";
 
 const TittleButtons = ({title, savedOrDelete, link, _id}) =>{
     const [state, dispatch] = useBookContext();
@@ -12,17 +13,12 @@ const TittleButtons = ({title, savedOrDelete, link, _id}) =>{
         
         const dataId = event.target.getAttribute("dataId")
         const action = event.target.getAttribute("savedOrDelete")
-        console.log(dataId);
-        console.log(action);
-        console.log(state.books[dataId]);
+
         if(action === "Save"){
 
             const { data } = await Api.saveBook(state.books[dataId])
-            console.log(data)
-            //     dispatch({
-            //     type: ADD_BOOK,
-            //     books: state.books[dataId]
-            // })
+            
+            
 
             return
         }
@@ -41,12 +37,12 @@ const TittleButtons = ({title, savedOrDelete, link, _id}) =>{
 
                 <div>
                     <a className="button is-warning is-small" href={link}>View</a>
-                    <button className={`button ${savedOrDelete === "Save"?"is-success":"is-danger"} is-small`} 
+                    <Link to="/saved" className={`button ${savedOrDelete === "Save"?"is-success":"is-danger"} is-small`} 
                             savedOrDelete={savedOrDelete}    
                             dataId={_id} 
                             onClick={handleOnClick}
 
-                    >{savedOrDelete}</button>
+                    >{savedOrDelete}</Link>
                 </div>
             </div>
         </Column>
