@@ -6,7 +6,7 @@ import Section from "../Section"
 import TittleButtons from "../TittleButtons"
 
 const MainContainer = ({list, savedOrDelete}) => {
-console.log("here", list)
+
     return (
         <Column>
         {list.map((item, index)=>{
@@ -18,7 +18,7 @@ console.log("here", list)
             <div className="column">
                 <Section className="columns is-multiline">
 
-                    <TittleButtons {...item} savedOrDelete={savedOrDelete} _id={index}/>
+                    <TittleButtons {...item} savedOrDelete={savedOrDelete} _id={item._id?item._id:index}/>
 
                     <p className="column is-full pt-0 pb-0">{item.subtitle}</p>
                     <p className="column is-full pt-0">{item.authors}</p>

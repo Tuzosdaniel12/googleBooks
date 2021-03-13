@@ -3,7 +3,7 @@ const { Books } = require("../models");
 module.exports = {
     findAll: async (req, res) => {
        try{
-        const books = await Books.find()
+        const books = await Books.find({})
 
         .sort({ createdAt: -1 })
 
@@ -29,7 +29,7 @@ module.exports = {
 
     remove: async (req, res) => {
         try{
-            const removeBook = await Books.findById({ _id: req.params.id })
+            const removeBook = await Books.findByIdAndRemove(req.params.id, { new: true, runValidators: true } )
 
             res.status(200).json(removeBook);
 

@@ -44,7 +44,7 @@ const FormControl = () =>{
                 title: item.volumeInfo.title,
                 subtitle: item.volumeInfo.subtitle,
                 description: item.volumeInfo.description,
-                infoLink: item.volumeInfo.infoLink
+                link: item.volumeInfo.infoLink
             } 
     }
     return(
