@@ -5,7 +5,7 @@ module.exports = {
        try{
         const books = await Books.find({})
 
-        .sort({ createdAt: -1 })
+        .sort({ date: -1 })
 
         res.status(200).json(books)
     

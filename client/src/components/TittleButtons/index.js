@@ -20,7 +20,7 @@ const TittleButtons = ({title, savedOrDelete, link, _id}) =>{
             
             const { data } = await Api.saveBook(state.books[dataId])
             
-            history.push("/saved"); 
+            //history.push("/saved"); 
 
             return
         }

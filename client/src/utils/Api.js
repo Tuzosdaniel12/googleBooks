@@ -5,7 +5,8 @@ import axios from "axios"
 export default {
     // Gets all google books
     getBooks: async (title) => {
-      return axios.get( `https://www.googleapis.com/books/v1/volumes?q=${title}`);
+      const modTittle = formatTitle(title)
+      return axios.get( `https://www.googleapis.com/books/v1/volumes?q=${modTittle}`);
     },
     getSavedBooks: async () => {
         return axios.get("/api/books");
@@ -20,12 +21,12 @@ export default {
     }
   };
 
-// const formatTitle = (title) =>{
-//     const format = title.split(" ");
+const formatTitle = (title) =>{
+    const format = title.split(" ");
 
-//     if(!Array.isArray(format)) return title
+    if(!Array.isArray(format)) return title
 
-//     const modTitle = format.reduce((acc,val) => acc + "+"+ val).toLowerCase()
+    const modTitle = format.reduce((acc,val) => acc + "+"+ val).toLowerCase()
 
-//     return modTitle
-// }
+    return modTitle
+}
