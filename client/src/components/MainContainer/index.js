@@ -24,7 +24,7 @@ const MainContainer = ({list, savedOrDelete}) => {
                 </Section>
 
                 <Section styling="ml-1 mr-1 mb-1">
-                    <Figure image={item.image}/>
+                    <Figure image={item.image} title={item.title}/>
                     <Description description={item.description}/>
                 </Section>    
                 

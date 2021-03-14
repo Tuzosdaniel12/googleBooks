@@ -6,7 +6,7 @@ export default {
     // Gets all google books
     getBooks: async (title) => {
       const modTittle = formatTitle(title)
-      return axios.get( `https://www.googleapis.com/books/v1/volumes?q=${modTittle}`);
+      return axios.get( `https://www.googleapis.com/books/v1/volumes?q=${title}`);
     },
     getSavedBooks: async () => {
         return axios.get("/api/books");

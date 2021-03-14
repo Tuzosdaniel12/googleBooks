@@ -1,7 +1,7 @@
 
 import { useBookContext } from "../../utils/GlobalContext";
 import Column from "../Column"
-import { ADD_BOOK, REMOVE_BOOK } from "../../utils/action";
+import { REMOVE_BOOK } from "../../utils/action";
 import Api from "../../utils/Api";
 import { useHistory } from "react-router-dom"
 
@@ -12,25 +12,31 @@ const TittleButtons = ({title, savedOrDelete, link, _id}) =>{
 
     const handleOnClick = async (event) =>{
         event.preventDefault();
-        
-        const dataId = event.target.getAttribute("dataId")
-        const action = event.target.getAttribute("savedOrDelete")
+        try{
+            const dataId = event.target.getAttribute("data-id")
+            const action = event.target.getAttribute("saved-or-delete")
 
-        if(action === "Save"){
-            
-            const { data } = await Api.saveBook(state.books[dataId])
-            
-            //history.push("/saved"); 
+            if(action === "Save"){
 
-            return
+                await Api.saveBook(state.books[dataId])
+                
+                history.push("/saved"); 
+
+                return
+            }
+            await Api.deleteBook(dataId);
+
+            dispatch({
+                    type: REMOVE_BOOK,
+                    _id: dataId
+                })
+
+        }catch(err){
+            console.log(err)
         }
-
-        dispatch({
-                type: REMOVE_BOOK,
-                _id: dataId
-            })
-            
+           
     }
+    
     return(
         <Column>
             <div className="is-flex is-justify-content-space-between">
@@ -40,8 +46,8 @@ const TittleButtons = ({title, savedOrDelete, link, _id}) =>{
                 <div>
                     <a className="button is-warning is-small" href={link}>View</a>
                     <button className={`button ${savedOrDelete === "Save"?"is-success":"is-danger"} is-small`} 
-                            savedOrDelete={savedOrDelete}    
-                            dataId={_id} 
+                            saved-or-delete={savedOrDelete}    
+                            data-id={_id} 
                             onClick={handleOnClick}
 
                     >{savedOrDelete}</button>

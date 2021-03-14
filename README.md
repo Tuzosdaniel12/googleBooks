@@ -47,7 +47,7 @@ Attempt to complete homework assignment as described in instructions. If unable 
 
 ## Test
 
-[![image](./images/page.png)](https://google-books-search-and-s.herokuapp.com/)
+[![image](.client/public/images/page.png)](https://google-books-search-and-s.herokuapp.com/)
 
 [Live Page Here or Press Image](https://google-books-search-and-s.herokuapp.com/)
 

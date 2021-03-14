@@ -18,18 +18,19 @@ module.exports = {
         try {
             const createBook = await Books.create(req.body)
 
-            res.status(200).json(create)
+            res.status(200).json(createBook)
 
         } catch (error) {
-
+            console.log(error)
             res.status(422).json(error);
 
         }
     },
 
     remove: async (req, res) => {
+
         try{
-            const removeBook = await Books.findByIdAndRemove(req.params.id, { new: true, runValidators: true } )
+            const removeBook = await Books.findByIdAndRemove(req.params.id)
 
             res.status(200).json(removeBook);
 

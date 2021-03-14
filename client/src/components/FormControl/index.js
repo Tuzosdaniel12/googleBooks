@@ -29,7 +29,8 @@ const FormControl = () =>{
         const userQuery = bookInput.current.value
 
         const { data } = await api.getBooks(userQuery)
-        
+
+        console.log(data)
         
         dispatch({
             type: SEARCH,
@@ -38,9 +39,10 @@ const FormControl = () =>{
     }
 
     const filterData = (item) =>{
+
         return {
                 authors: item.volumeInfo.authors,
-                image: item.volumeInfo.imageLinks.thumbnail,
+                image: item.volumeInfo.imageLinks? item.volumeInfo.imageLinks.thumbnail:"./images/book.png",
                 title: item.volumeInfo.title,
                 subtitle: item.volumeInfo.subtitle,
                 description: item.volumeInfo.description,
